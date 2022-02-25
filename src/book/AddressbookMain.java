@@ -6,48 +6,51 @@ import java.util.Scanner;
 public class AddressbookMain {
 
 	static Scanner scanner = new Scanner(System.in);
-	ArrayList<AddressBook> person = new ArrayList<>();
+	ArrayList<AddressBook> person;
 
-	public void addPerson() {
+	public AddressbookMain() { // constructor same class name need to use
+		person = new ArrayList<AddressBook>();
+
+	}
+
+	public AddressBook addperson() {
 		System.out.println("Enter the First Name");
 		String fName = scanner.next();
 		System.out.println("Enter the Last Name");
 		String lName = scanner.next();
-		System.out.println("Enter the Address");
-		String address = scanner.next();
-		System.out.println("Enter the City");
+		System.out.println("Enter the city");
 		String city = scanner.next();
 		System.out.println("Enter the State");
 		String state = scanner.next();
 		System.out.println("Enter the Zip");
 		String zip = scanner.next();
-		System.out.println("Enter the PhoneNumber");
-		String phoneNo = scanner.next();
-		System.out.println("Enter the Email");
+		System.out.println("Enter the Address");
+		String address = scanner.next();
+		System.out.println("Enter the Phone number");
+		String phonenumber = scanner.next();
+		System.out.println("Enter the email");
 		String email = scanner.next();
 
-//creating Addressbook object and passing arguments inside constructor
-		AddressBook p = new AddressBook(fName, lName, city, state, zip, address, phoneNo, email);
-//adding p object into the linked list with Addressbook class data type
-		person.add(p);
-//printing person array list
-		System.out.println(p);
+		AddressBook contacts = new AddressBook(fName, lName, city, state, zip, address, phonenumber, email); // constructor
+																												// eg
+		// in c int x=10
 
+		person.add(contacts); // adding above list to array
+		System.out.println(contacts); // printing contacts
+
+		return contacts;
 	}
 
-	// Edit AddressBook details using person name
-
-	/// editing contact by searching names
 	public void editPerson() {
-		System.out.println("Enter the name to edit");
+		System.out.println("Enter name to Edit");
 		String s = scanner.next();
-
 		for (int i = 0; i < person.size(); i++) {
 			AddressBook p = person.get(i);
+
 			if (s.equals(p.getfname())) {
 				while (true) {
-					System.out.println("Enter choice to edit 1)firstName\n2)lastName\n3)city\n"
-							+ "4)state\n5)zip\n6)address\n7)phoneNo\n8)email\n9)exit");
+					System.out.println("Enter choice to edit 1)firstName\n2)lastName\n3)address\n"
+							+ "4)city\n5)state\n6)zip\n7)phoneNumber\n8)email9)exit");
 					int choice = scanner.nextInt();
 					switch (choice) {
 					case 1:
@@ -64,7 +67,6 @@ public class AddressbookMain {
 						break;
 					case 5:
 						p.setzip(scanner.next());
-
 						break;
 					case 6:
 						p.setaddress(scanner.next());
@@ -78,42 +80,25 @@ public class AddressbookMain {
 					default:
 						System.out.println("select correct choice");
 						break;
-					}// end of switch
+					}
 					if (choice == 9)
 						break;
-				} // end while
+				} // end while loop
 				person.set(i, p);
 				System.out.println("person after editing");
 				System.out.println(person);
 
-			} // end of if
-		} // end of for loop
-
-	}
-
-	public void deletePerson() {
-		System.out.println("Enter the name to search and delete");
-		String s = scanner.next();
-		for (int i = 0; i < person.size(); i++) {
-			AddressBook p = person.get(i);
-			if (s.equals(p.getfname())) {
-				person.remove(i);
 			}
 		}
-		System.out.println("AddressBook after deletion");
-		if (person.isEmpty() != true)
-			System.out.println(person);
-		else {
-			System.out.println("AddressBook deleted");
-		}
+
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		AddressbookMain main = new AddressbookMain();
-		main.addPerson();
+		main.addperson();
 		main.editPerson();
-		main.deletePerson();
+		// main.deletePerson();
 	}
 
 }
